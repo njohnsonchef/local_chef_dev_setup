@@ -27,11 +27,28 @@ Windows: [Download](http://git-scm.com/download/win)
 ### Don't forget to set the embedded ruby shipped with Chef first in your PATH
 `echo 'export PATH="/opt/chefdk/embedded/bin:$PATH"' >> $HOME/.bash_profile`
 
-### Make sure ruby and bundler are installed and working
+### Make sure ruby is installed and working
 `which ruby && ruby -v`
 
 ### Install kitchen-vagrant gem if not already present
 `chef gem install kitchen-vagrant`
+
+### Install Text Editor
+
+[atom](https://github.com/atom/atom)
+- atom plugins:
+- vim-mode
+- language-chef
+- linter
+- linter-foodcritic
+- linter-rubocop
+- remote-sync
+- linter-package-json-validator
+- colorful-json
+
+[sublime text](https://www.sublimetext.com/)
+
+[VisualStudio Code](https://code.visualstudio.com/download)
 
 ## Local cookbook development workflow
 
@@ -42,22 +59,36 @@ Windows: [Download](http://git-scm.com/download/win)
 `kitchen list`
 
 ### use Berkshelf to download dependency cookbooks
-`berks install`
+`berks install` if applicable
 
-### Modify .kitchen.yml to add default recipe and attribute
+### Modify .kitchen.yml to specify platforms, run-list, verifier,
 ```
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+# Uncomment the following verifier to leverage Inspec instead of Busser (the
+# default verifier)
+# verifier:
+#   name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+  - name: centos-7.1
+
 suites:
   - name: default
-    run_list: pipeline::default
+    run_list:
+      - recipe[your-cookbook::default]
     attributes:
-      jenkins:
-        master:
-          install_method: package
 ```
 
 ### Modify .kitchen.yml to add cpu/memory and port forwarding if needed
 ```
-driver_config:
+driver:
   network:
   - ["forwarded_port", {guest: 8080, host: 8080}]
   customize:
@@ -78,7 +109,7 @@ driver_config:
 `git add .`
 
 ### commit all changes
-`git commit -m "initial commit of pipeline cookbook"`
+`git commit -m "initial commit of cookbook"`
 
 
 ## Links to example cookbook
