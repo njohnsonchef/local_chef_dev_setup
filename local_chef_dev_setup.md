@@ -99,7 +99,7 @@ driver:
 ### Show all kitchen instances
 `kitchen list`
 
-### Run VM for CentOS 6.7 and converge with configuration
+### Run VM for CentOS 7.1 and converge with configuration
 `kitchen converge centos`
 
 ### see git status of files added and modified
@@ -111,6 +111,5 @@ driver:
 ### commit all changes
 `git commit -m "initial commit of cookbook"`
 
-
-## Links to example cookbook
-[Pipeline Cookbook Example](https://github.com/stephenlauck/setup_local_chef_dev_pipeline)
+### link to Chef tutorials
+[Chef tutorials](https://learn.chef.io/tutorials/)
