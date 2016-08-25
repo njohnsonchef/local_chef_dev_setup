@@ -2,11 +2,14 @@
 
 ### Download and install
 
-[chef-dk](http://www.getchef.com/downloads/chef-dk) - Does not currently support Windows or Mac OSX earlier than Mavericks
+[chef-dk](https://downloads.chef.io/chef-dk)
 
 [virtual box](https://www.virtualbox.org/wiki/Downloads)
 
 [vagrant](http://www.vagrantup.com/downloads.html)
+
+### Use these instructions to install the chefdk
+[docs.chef.io installation instructions](https://docs.chef.io/install_dk.html)
 
 ### If you are not able to run chef-dk check out this blog post by Mischa Taylor:
 [Set Up a Sane Ruby Cookbook Authoring Environment for Chef on Mac OS X, Linux and Windows](http://misheska.com/blog/2013/12/26/set-up-a-sane-ruby-cookbook-authoring-environment-for-chef/)
@@ -24,24 +27,14 @@
 
 ## Local cookbook development workflow
 
-### create new cookbook using Berkshelf
-`berks cookbook pipeline`
+### create new cookbook using the `chef generate` command
+`chef generate cookbook your-cookbook`
 
 ### list test-kitchen VM's
-`cd pipeline`
-
-### add jenkins dependency to metadata.rb
-`depends 'jenkins'`
+`kitchen list`
 
 ### use Berkshelf to download dependency cookbooks
 `berks install`
-
-### Add jenkins to recipes/default.rb to create a jenkins master
-### and also install java
-
-`include_recipe 'jenkins::java'`
-
-`include_recipe 'jenkins::master'`
 
 ### Modify .kitchen.yml to add default recipe and attribute
 ```
