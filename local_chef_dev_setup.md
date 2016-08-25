@@ -1,5 +1,15 @@
 ## Local Development Setup for Chef
 
+### Install git
+
+Linux: `sudo yum install git`
+Mac: [Download](http://git-scm.com/download/mac)
+Windows: [Download](http://git-scm.com/download/win)
+- posh-git: A set of PowerShell scripts that provide Git/PowerShell integration
+- [Download posh-git](https://github.com/dahlbyk/posh-git)
+
+
+
 ### Download and install
 
 [chef-dk](https://downloads.chef.io/chef-dk)
@@ -14,13 +24,11 @@
 ### If you are not able to run chef-dk check out this blog post by Mischa Taylor:
 [Set Up a Sane Ruby Cookbook Authoring Environment for Chef on Mac OS X, Linux and Windows](http://misheska.com/blog/2013/12/26/set-up-a-sane-ruby-cookbook-authoring-environment-for-chef/)
 
-### You may want to set the embedded ruby shipped with Chef first in your PATH
+### Don't forget to set the embedded ruby shipped with Chef first in your PATH
 `echo 'export PATH="/opt/chefdk/embedded/bin:$PATH"' >> $HOME/.bash_profile`
 
 ### Make sure ruby and bundler are installed and working
 `which ruby && ruby -v`
-
-`which bundle && bundle -v`
 
 ### Install kitchen-vagrant gem if not already present
 `chef gem install kitchen-vagrant`
@@ -47,7 +55,7 @@ suites:
           install_method: package
 ```
 
-### Modify .kitchen.yml to add cpu/memory and port forwarding for jenkins
+### Modify .kitchen.yml to add cpu/memory and port forwarding if needed
 ```
 driver_config:
   network:
@@ -60,12 +68,8 @@ driver_config:
 ### Show all kitchen instances
 `kitchen list`
 
-### Run VM for CentOS 6.5 and converge with configuration
+### Run VM for CentOS 6.7 and converge with configuration
 `kitchen converge centos`
-
-### See if jenkins is running
-`http://localhost:8080`
-
 
 ### see git status of files added and modified
 `git status`
